@@ -3,7 +3,7 @@ A quick and dirty Tetris game I created through Javascript and can be played in 
 
 This game was from a lesson via https://www.youtube.com/watch?v=rAUn1Lom6dw, but I added in a few extra features including:
 - All 7 tetris pieces
-- Score adjustment and line count
+- Improved score adjustment based on level and simultaneous cleared lines as well as line count
 - Level adjustment (both in the beginning and as you play)
 - Bug fixes including preventing rotation if pieces or walls prevent it from doing so
 - "Height" adjustment where pregenerated pieces are added at the start for extra difficulty
