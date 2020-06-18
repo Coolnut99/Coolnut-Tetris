@@ -6,11 +6,16 @@ This game was from a lesson via https://www.youtube.com/watch?v=rAUn1Lom6dw, but
 - Improved score adjustment based on level and simultaneous cleared lines as well as line count
 - Level adjustment (both in the beginning and as you play)
 - Bug fixes including preventing rotation if pieces or walls prevent it from doing so
-- "Height" adjustment where pregenerated pieces are added at the start for extra difficulty
+- "Height" adjustment where pregenerated pieces are added at the start if you want an extra challenge
 - A game over and reset.
 - A bit of extra-snarky text.
 
 6/18 UPDATE: Added statistics based on pieces added in play
+
+FUTURE PLANS (may be subject to change):
+- Add graphics for the pieces
+- Extra difficulty by adding in occasional blocks and rows mid-game (similar to the Atari arcade Tetris)
+- Two-player option?
 
 Controls (on keypad):
 Left/right to move piece left or right;
