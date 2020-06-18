@@ -10,6 +10,8 @@ This game was from a lesson via https://www.youtube.com/watch?v=rAUn1Lom6dw, but
 - A game over and reset.
 - A bit of extra-snarky text.
 
+6/18 UPDATE: Added statistics based on pieces added in play
+
 Controls (on keypad):
 Left/right to move piece left or right;
 Up to rotate;
