@@ -23,7 +23,6 @@
 
 .mini-grid {
   margin-left: 50px;
-  margin-top: 50px;
   width: 80px;
   height: 80px;
   display: flex;
@@ -34,7 +33,30 @@
 .mini-grid div {
   height: 20px;
   width: 20px;
+}
 
+.stats-pieces {
+  height: 20px;
+  width: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    /*background-color: black;*/
+}
+
+.statistics {
+  margin-left: 50px;
+  grid-template-columns:100px 100px;
+}
+
+.stats-pieces div {
+  height: 20px;
+  width: 20px;
+}
+
+.start-and-next {
+  display:grid;
+  grid-template-columns:300px 130px 200px;
+  grid-template-rows:20px;
 }
 
 .next-text {

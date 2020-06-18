@@ -32,6 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const displayWidth = 4
   const displayIndex = 0
 
+  const statSquares = document.querySelectorAll('.stats-pieces div')
+
+  const statNumbers = [0,0,0,0,0,0,0]
+  const statNumbersText = document.querySelectorAll('#piece_stats')
+
   const colors = ['orange','red','purple','aqua','green','blue','yellow']
 
  //The tetrominos
@@ -93,7 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
   //randomly select a tetromino
   let random = Math.floor(Math.random()*theTetrominoes.length)
   let current = theTetrominoes[random][currentRotation]
-  //console.log(theTetrominoes[0][0])
+
+  resetStats()
+  fillStatSquares()
 
   //drawing first rotation
   function draw(){
@@ -126,6 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
       nextRandom = Math.floor(Math.random() * theTetrominoes.length)
       current = theTetrominoes[random][currentRotation]
       currentPosition = 4
+      statNumbers[random]++
+      adjustStats()
       addScore()
       draw()
       displayShape()
@@ -225,15 +234,36 @@ function displayShape() {
   })
 }
 
+// These functions fill the stat squares with tetromino colors, reset the stats,
+// and adjusts them based on tetrominos put in play.
+//
+function fillStatSquares() {
+  for(let i = 0; i < colors.length; i++){
+    statSquares[i].style.backgroundColor = colors[i]
+  }
+}
+
+function resetStats() {
+  for(let i = 0; i < statNumbers.length; i++){
+    statNumbers[i] = 0
+    statNumbersText[i].innerHTML = statNumbers[i]
+  }
+}
+
+function adjustStats() {
+  for(let i = 0; i < statNumbers.length; i++){
+    statNumbersText[i].innerHTML = statNumbers[i]
+  }
+}
+//////
+
 function addScore() {
   let numberLines = 0
   for(let i = 0; i < 199; i+=width){
     const row = [i, i+1, i+2, i+3, i+4, i+5, i+6, i+7, i+8, i+9]
 
     if(row.every(index => squares[index].classList.contains('taken'))){
-      //score +=10
       numberLines++
-      //scoreDisplay.innerHTML = score
       row.forEach(index => {
         squares[index].classList.remove('taken')
         squares[index].classList.remove('tetromino')
@@ -244,7 +274,8 @@ function addScore() {
       squares.forEach(cell => grid.appendChild(cell))
     }
   }
-  //Score points based off getting a single, double, triple, or tetris
+  // Score points based off getting a single, double, triple, or tetris
+  // Also informs player what they got
   if(numberLines === 1){
     score +=10 * level
     youLoseDisplay.innerHTML = 'SINGLE!'
@@ -285,6 +316,8 @@ function gameOver() {
   }
 }
 
+// Adjusts speed based on level and lines created; 10 lines equal a level up
+
 function checkLevel(){
   let r = Math.floor(lines / 10) + 1
   if(r > level) {
@@ -304,6 +337,7 @@ function adjustDropSpeed(){
   clearInterval(timerId)
   timerId = setInterval(moveDown, 1000 - levelInterval)
 }
+/////
 
 function clearText(){
     youLoseDisplay.innerHTML = ''
@@ -318,8 +352,8 @@ function clearBoard(){
   }
 }
 
-//This is an advanced mode in which blocks are pre-added:
-
+// This is an advanced mode in which blocks are pre-added.
+// 0 means no added rows; 1 is four rows, and 5 means 12 rows
   function heightTest(){
     let heightTotal = 4 + ((startHeight - 1) * 2)
     for(let i = 199; i > (20-heightTotal) * width; i--){
@@ -333,6 +367,9 @@ function clearBoard(){
     }
   }
 
+// Listeners for the start/pause, level, and height buttons
+// Level maxes at 9 and height maxes at 5 (12 rows)
+
 startBtn.addEventListener('click', () => {
  if(timerId){
    clearInterval(timerId)
@@ -342,6 +379,9 @@ startBtn.addEventListener('click', () => {
    clearInterval(textTimerId)
  } else {
      if(!hasStarted) {
+       console.log(statNumbersText.length)
+       resetStats()
+       fillStatSquares()
        clearBoard()
        clearText()
        if(startHeight > 0) {
@@ -355,10 +395,11 @@ startBtn.addEventListener('click', () => {
        levelDisplay.innerHTML = level
        gameOverBuddy = false
        adjustDropSpeed()
-       //timerId = setInterval(moveDown, 1000 - levelInterval)
        draw()
        nextRandom = Math.floor(Math.random()*theTetrominoes.length)
        displayShape()
+       statNumbers[random]++
+       adjustStats()
        hasStarted = true
    } else if (!gameOverBuddy){
        timerId = setInterval(moveDown, 1000 - levelInterval)
