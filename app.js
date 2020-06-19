@@ -33,11 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const displayIndex = 0
 
   const statSquares = document.querySelectorAll('.stats-pieces div')
-
+  const blockColors = document.querySelectorAll('.block_colors img')
+  let blockImage = Array.from(document.getElementById("img_block").innerHTML)
   const statNumbers = [0,0,0,0,0,0,0]
   const statNumbersText = document.querySelectorAll('#piece_stats')
 
   const colors = ['orange','red','purple','aqua','green','blue','yellow']
+  const img_colors = ['orange','red','purple','lightblue','green','blue','white']
 
  //The tetrominos
 
@@ -107,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
     current.forEach(index => {
        squares[currentPosition + index].classList.add('tetromino')
        squares[currentPosition + index].style.backgroundColor = colors[random]
+       squares[currentPosition + index].innerHTML = "<img id=\"img_block\" src=\"blocks/" + img_colors[random] + ".png\" width=\"20\" height=\"20\">"
     })
   }
 
@@ -114,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
     current.forEach(index => {
       squares[currentPosition + index].classList.remove('tetromino')
       squares[currentPosition + index].style.backgroundColor = ''
+      squares[currentPosition + index].innerHTML = ''
     })
   }
 
@@ -227,10 +231,12 @@ function displayShape() {
   displaySquares.forEach(square => {
     square.classList.remove('tetromino')
     square.style.backgroundColor = ''
+    square.innerHTML = ''
   })
   upNextTetrominoes[nextRandom].forEach( index => {
     displaySquares[displayIndex + index].classList.add('tetromino')
     displaySquares[displayIndex + index].style.backgroundColor = colors[nextRandom]
+    displaySquares[displayIndex + index].innerHTML = "<img id=\"img_block\" src=\"blocks/" + img_colors[nextRandom] + ".png\" width=\"20\" height=\"20\">"
   })
 }
 
@@ -240,6 +246,7 @@ function displayShape() {
 function fillStatSquares() {
   for(let i = 0; i < colors.length; i++){
     statSquares[i].style.backgroundColor = colors[i]
+    statSquares[i].innerHTML = "<img id=\"img_block\" src=\"blocks/" + img_colors[i] + ".png\" width=\"20\" height=\"20\">"
   }
 }
 
@@ -268,6 +275,7 @@ function addScore() {
         squares[index].classList.remove('taken')
         squares[index].classList.remove('tetromino')
         squares[index].style.backgroundColor = ''
+        squares[index].innerHTML = ''
       })
       const squaresRemoved = squares.splice(i, width)
       squares = squaresRemoved.concat(squares)
@@ -349,6 +357,7 @@ function clearBoard(){
     squares[i].classList.remove('taken')
     squares[i].classList.remove('tetromino')
     squares[i].style.backgroundColor = ''
+    squares[i].innerHTML = ''
   }
 }
 
@@ -363,6 +372,7 @@ function clearBoard(){
         squares[i].classList.add('taken')
         squares[i].classList.add('tetromino')
         squares[i].style.backgroundColor = colors[rcolor]
+        squares[i].innerHTML = "<img id=\"img_block\" src=\"blocks/" + img_colors[rcolor] + ".png\" width=\"20\" height=\"20\">"
       }
     }
   }
