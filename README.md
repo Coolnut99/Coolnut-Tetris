@@ -1,5 +1,5 @@
 # Coolnut-Tetris
-A quick and dirty Tetris game I created through Javascript and can be played in your browser. Download and put all three files in the same directory, then open the "index.html" file in any Web browser (Firefox, Chrome, Edge, etc.)
+A quick and dirty Tetris game I created through Javascript and can be played in your browser. Download and put all the files in the same directory (leave the block images in the /blocks folder), then open the "index.html" file in any Web browser (Firefox, Chrome, Edge, etc.)
 
 This game was from a lesson via https://www.youtube.com/watch?v=rAUn1Lom6dw, but I added in a few extra features including:
 - All 7 tetris pieces
