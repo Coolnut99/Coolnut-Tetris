@@ -12,8 +12,10 @@ This game was from a lesson via https://www.youtube.com/watch?v=rAUn1Lom6dw, but
 
 6/18 UPDATE: Added statistics based on pieces added in play
 
+6/19 UPDATE: Added graphics for the pieces. May need to be tweaked a bit so they don't look all faded.
+
 FUTURE PLANS (may be subject to change):
-- Add graphics for the pieces
+-
 - Extra difficulty by adding in occasional blocks and rows mid-game (similar to the Atari arcade Tetris)
 - Two-player option?
 
